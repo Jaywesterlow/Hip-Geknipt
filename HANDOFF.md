@@ -49,7 +49,7 @@ Lees `CLAUDE.md` eerst. Dit bestand zegt waar het werk staat en wat er nog niet 
 
 1. `npm install` (node_modules zijn niet in git), `npx prettier --write .`, `npm run check`, `npm run lint`, `npm run build`.
 2. Renderen op 1440 en 400 (Playwright, Chromium staat in de omgeving) en **kijken**. Daarna de audit van `site-design-rulebook` (`scripts/render-audit.js`, `type-audit.js`) en `docs/audit.md` schrijven. Verwachte zwakke plekken: de collage (`Work.svelte`, posities in `workFacts`) is blind geplaatst; de hero-foto (3:4, 1086 px breed) naast de kopij; de prijslijst-rijen op een telefoon.
-3. Repo (Jaymar) en Vercel, dan de live URL in `site.origin`.
+3. Vercel: `create_git_project` op `Jaywesterlow/hip-geknipt`, dan de live URL in `site.origin`.
 4. De mail, met de connectie hierboven, in `docs/outreach/`.
 5. Kalender: "Bellen: Salon Hip Geknipt" maandag 13 oktober 12:00, Google Calendar.
 6. Bord: `outreach/hip-geknipt.json` in jw-docs naar `sent` zodra hij gemaild heeft, `nextAt` 2026-10-13.
@@ -62,7 +62,6 @@ Lees `CLAUDE.md` eerst. Dit bestand zegt waar het werk staat en wat er nog niet 
 - `docs/bewegingsconcept.md`: bibliotheek 11b (tekst), 12 (foto's), 07 (de collage, het signatuurmoment).
 - `src/lib/data/studio.nl.ts`: hun woorden, de 24 prijsregels, 6 van hun 8 reviews.
 - `static/fonts`: Cormorant Garamond en Jost, zelf gehost.
-- De noodkopie: branch `hip-geknipt` op `https://github.com/Jaywesterlow/JW` (alleen als de push lukte; zie de laatste regel van dit bestand).
 
 ## Valkuilen
 
