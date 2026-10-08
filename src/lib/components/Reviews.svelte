@@ -10,8 +10,11 @@
 	type Props = { reviews: Review[]; text: UI['reviews'] };
 	let { reviews, text }: Props = $props();
 
-	const half = $derived(Math.ceil(reviews.length / 2));
-	const columns = $derived([reviews.slice(0, half), reviews.slice(half)]);
+	// alternate, so a long quote and a short one share a row and the columns end near each other
+	const columns = $derived([
+		reviews.filter((_, i) => i % 2 === 0),
+		reviews.filter((_, i) => i % 2 === 1)
+	]);
 </script>
 
 <section class="reviews frame section" id="reviews">
@@ -42,6 +45,11 @@
 		grid-template-columns: 1fr 1fr;
 		column-gap: var(--space-7);
 		align-items: start;
+	}
+	/* the mask reaches 12px past the text edge, so the hung opening mark is never clipped */
+	.reviews :global(.review .line) {
+		margin-left: calc(var(--space-3) * -1);
+		padding-left: var(--space-3);
 	}
 	.reviews :global(.review .line > span) {
 		display: block;

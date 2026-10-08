@@ -51,6 +51,9 @@
 	--gutter: clamp(20px, 3.333vw, 48px);
 	--max: 1200px;
 	--margin: max(var(--gutter), calc((100% - var(--max)) / 2));
+	/* the same margin measured against the viewport, for an element inside the frame that breaks
+	   out to the edge (a percentage would resolve against its own column) */
+	--bleed: max(var(--gutter), calc((100vw - var(--max)) / 2));
 	/* section padding per side: about 96 px between sections at 1440, the sector's gap */
 	--section: clamp(32px, 3.333vw, 48px);
 	/* the one sparse step, twice the standard, for the closing band */

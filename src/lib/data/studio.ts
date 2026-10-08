@@ -67,21 +67,27 @@ const teamFacts = [
 
 /**
  * The collage of their work: seven photos, each with its size class, position (percent of the
- * stage) and scroll speed, placed as library entry 07 places its items.
+ * stage, `x`/`y` at 1440, `mx`/`my` on a phone) and scroll speed, placed as library entry 07
+ * places its items. The stage is sized by width (94vw, 340vw on a phone), so the placement holds
+ * at every screen height. Measured at 1440: one deliberate overlap (work4 over work1's corner);
+ * every other pair at least 48 px apart; work2 starts on the 5-column line (648) and work5 ends
+ * on the frame's right edge (1320); work1 and work6 cross the left frame edge, work3 the right.
  */
 export const workFacts = [
-	{ photo: 'work1', size: 'big', x: 2, y: 0, speed: 2 },
-	{ photo: 'work2', size: 'normal', x: 46, y: 6, speed: 4 },
-	{ photo: 'work3', size: 'small', x: 78, y: 2, speed: 3 },
-	{ photo: 'work4', size: 'normal', x: 22, y: 36, speed: 1 },
-	{ photo: 'work5', size: 'big', x: 62, y: 30, speed: 2 },
-	{ photo: 'work6', size: 'small', x: 4, y: 68, speed: 4 },
-	{ photo: 'work7', size: 'normal', x: 42, y: 66, speed: 3 }
+	{ photo: 'work1', size: 'big', x: 2, y: 0, mx: 0, my: 0, speed: 2 },
+	{ photo: 'work2', size: 'normal', x: 45, y: 6, mx: 56, my: 28, speed: 4 },
+	{ photo: 'work3', size: 'small', x: 80, y: 2, mx: 70, my: 4, speed: 3 },
+	{ photo: 'work4', size: 'normal', x: 19, y: 36, mx: 0, my: 29, speed: 1 },
+	{ photo: 'work5', size: 'big', x: 61.7, y: 42, mx: 42, my: 52, speed: 2 },
+	{ photo: 'work6', size: 'small', x: 2, y: 72, mx: 0, my: 80, speed: 4 },
+	{ photo: 'work7', size: 'normal', x: 36, y: 71, mx: 48, my: 80, speed: 3 }
 ] as const satisfies readonly {
 	photo: PhotoKey;
 	size: 'big' | 'normal' | 'small';
 	x: number;
 	y: number;
+	mx: number;
+	my: number;
 	speed: number;
 }[];
 
@@ -179,8 +185,8 @@ export type Studio = Content['studio'];
 
 export const content: Content = compose(nl);
 
-/** € 34,95 and € 450,-, as their price list writes them. */
+/** € 34,95 and € 450,-, as their price list writes them; the space never breaks. */
 export function euro(amount: number): string {
 	const text = Number.isInteger(amount) ? `${amount},-` : amount.toFixed(2).replace('.', ',');
-	return `€ ${text}`;
+	return `€ ${text}`;
 }

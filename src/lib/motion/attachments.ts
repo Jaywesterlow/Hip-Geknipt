@@ -53,11 +53,15 @@ export function slideUp(): Attachment<HTMLElement> {
 			? (tween.play(), [])
 			: [
 					ScrollTrigger.create({ trigger: node, start: 'top 85%', onEnter: () => tween.play() }),
-					// reset only once the block is below the screen again, never on the way out
+					// reset only once the block is below the screen again, never on the way out; the masks
+					// close first, or the lines would show one line low until the next play
 					ScrollTrigger.create({
 						trigger: node,
 						start: 'top bottom',
-						onLeaveBack: () => tween.pause(0)
+						onLeaveBack: () => {
+							masks.forEach((mask) => (mask.style.overflow = ''));
+							tween.pause(0);
+						}
 					})
 				];
 

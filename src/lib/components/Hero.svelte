@@ -63,10 +63,14 @@
 	}
 	.visual {
 		/* from the 5-column line off the right edge */
-		margin-right: calc(var(--margin) * -1);
+		margin-right: calc(var(--bleed) * -1);
 	}
+	/* the frame fills its seven columns to the viewport edge and the screen's height; the photo
+	   (3:4) is cropped inside it, so the break lands on the edge, never a few columns short */
 	.visual :global(.photo) {
-		max-height: calc(100svh - var(--nav-h) - var(--section) * 2);
+		aspect-ratio: auto;
+		height: calc(100svh - var(--nav-h) - var(--section) * 2);
+		min-height: 24rem;
 	}
 	@media (max-width: 900px) {
 		.hero {
@@ -80,7 +84,8 @@
 		}
 		.visual :global(.photo) {
 			aspect-ratio: 4 / 5;
-			max-height: none;
+			height: auto;
+			min-height: 0;
 		}
 	}
 </style>

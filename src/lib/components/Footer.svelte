@@ -49,9 +49,11 @@
 		display: grid;
 		gap: var(--space-7);
 	}
+	/* the first column is the page's 5 columns (480 at 1440), so the address starts on the same
+	   line as the hero photo and the facts; the rest splits in two */
 	.grid {
 		display: grid;
-		grid-template-columns: 5fr 4fr 3fr;
+		grid-template-columns: 20fr 13fr 13fr;
 		column-gap: var(--space-7);
 		row-gap: var(--space-6);
 		align-items: start;

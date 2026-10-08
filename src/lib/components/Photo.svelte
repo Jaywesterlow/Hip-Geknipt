@@ -28,7 +28,7 @@
 
 <div
 	class="photo {className}"
-	style:aspect-ratio={ratio}
+	style:--ratio={ratio}
 	style:--position={position}
 	data-reveal
 	{@attach revealImage()}
@@ -37,8 +37,10 @@
 </div>
 
 <style>
+	/* the ratio is a custom property, so a section can override it per width (the hero does) */
 	.photo {
 		position: relative;
+		aspect-ratio: var(--ratio);
 		overflow: hidden;
 		background: var(--panel);
 	}

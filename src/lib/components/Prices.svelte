@@ -34,7 +34,7 @@
 							<span class="name">{row.name}</span>
 							<span class="price numeric">
 								{#if row.from}<span class="from">vanaf</span>{/if}
-								{euro(row.amount)}{#if row.period}<span class="from"> {row.period}</span>{/if}
+								{euro(row.amount)}{#if row.period}{' '}<span class="from">{row.period}</span>{/if}
 							</span>
 						</Mask>
 					{/each}

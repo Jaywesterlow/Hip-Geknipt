@@ -28,6 +28,8 @@
 				data-speed={item.speed}
 				style:--x="{item.x}%"
 				style:--y="{item.y}%"
+				style:--xm="{item.mx}%"
+				style:--ym="{item.my}%"
 				style:aspect-ratio={item.photo === 'work7' ? '1 / 1' : '3 / 4'}
 			>
 				<enhanced:img
@@ -46,10 +48,11 @@
 	.work .head {
 		margin-bottom: var(--space-6);
 	}
-	/* the stage runs edge to edge, so the images cross the frame on both sides */
+	/* the stage runs edge to edge, so the images cross the frame on both sides; its height follows
+	   the width, like the images, so the placement holds on every screen height */
 	.stage {
 		position: relative;
-		height: 180svh;
+		height: 94vw;
 		overflow-x: clip;
 	}
 	.item {
@@ -81,66 +84,91 @@
 		width: 100%;
 		height: 100%;
 		object-fit: cover;
-		opacity: 0;
-		pointer-events: none;
-		transform: translate(0, 0) scale(1);
-		transition:
-			opacity 1s ease,
-			transform 1s ease;
-	}
-	/* the library's four diagonals, by position in the stage */
-	.item:nth-child(4n) :global(.image) {
-		transform: translate(-30vh, -30vh) scale(0.8);
-		transition-delay: 0s;
-	}
-	.item:nth-child(4n-1) :global(.image) {
-		transform: translate(30vh, 30vh) scale(0.8);
-		transition-delay: 0.05s;
-	}
-	.item:nth-child(4n-2) :global(.image) {
-		transform: translate(-30vh, 30vh) scale(0.8);
-		transition-delay: 0.1s;
-	}
-	.item:nth-child(4n-3) :global(.image) {
-		transform: translate(-30vh, -30vh) scale(0.8);
-		transition-delay: 0.15s;
-	}
-	.item :global(.image.-active) {
-		transform: translate(0, 0) scale(1);
 		opacity: 0.8;
-		pointer-events: auto;
+		transition: opacity var(--state);
 	}
-	.item :global(.image.-active:hover) {
+	.item :global(.image:hover) {
 		opacity: 1;
+	}
+	/* the entry, only with JS and only for visitors who did not ask for less motion: each image
+	   waits off its place and at 80 %, and the class `-active` (set by the attachment once the
+	   item is 92 % up the screen) lets it travel in. Without JS the collage simply stands. */
+	@media (prefers-reduced-motion: no-preference) {
+		:global(html.js) .item :global(.image) {
+			opacity: 0;
+			pointer-events: none;
+			transform: translate(0, 0) scale(1);
+			transition:
+				opacity 1s ease,
+				transform 1s ease;
+		}
+		/* the library's four diagonals, by position in the stage */
+		:global(html.js) .item:nth-child(4n) :global(.image) {
+			transform: translate(-30vh, -30vh) scale(0.8);
+			transition-delay: 0s;
+		}
+		:global(html.js) .item:nth-child(4n-1) :global(.image) {
+			transform: translate(30vh, 30vh) scale(0.8);
+			transition-delay: 0.05s;
+		}
+		:global(html.js) .item:nth-child(4n-2) :global(.image) {
+			transform: translate(-30vh, 30vh) scale(0.8);
+			transition-delay: 0.1s;
+		}
+		:global(html.js) .item:nth-child(4n-3) :global(.image) {
+			transform: translate(-30vh, -30vh) scale(0.8);
+			transition-delay: 0.15s;
+		}
+		:global(html.js) .item :global(.image.-active) {
+			transform: translate(0, 0) scale(1);
+			opacity: 0.8;
+			pointer-events: auto;
+		}
+		:global(html.js) .item :global(.image.-active:hover) {
+			opacity: 1;
+		}
 	}
 	@media (max-width: 700px) {
 		.stage {
-			height: 170svh;
+			height: 320vw;
+		}
+		/* the phone placement: wider images, two loose columns */
+		.item {
+			left: min(var(--xm), calc(100% - var(--w)));
+			top: var(--ym);
 		}
 		.item.-big {
-			--w: 56%;
+			--w: 58%;
 		}
 		.item.-normal {
-			--w: 42%;
+			--w: 44%;
 		}
 		.item.-small {
 			--w: 30%;
 		}
-		.item:nth-child(4n) :global(.image),
-		.item:nth-child(4n-3) :global(.image) {
-			transform: translate(-15vh, -15vh) scale(0.8);
-		}
-		.item:nth-child(4n-1) :global(.image) {
-			transform: translate(15vh, 15vh) scale(0.8);
-		}
-		.item:nth-child(4n-2) :global(.image) {
-			transform: translate(-15vh, 15vh) scale(0.8);
-		}
-		.item :global(.image.-active) {
-			transform: translate(0, 0) scale(1);
+		@media (prefers-reduced-motion: no-preference) {
+			:global(html.js) .item:nth-child(4n) :global(.image),
+			:global(html.js) .item:nth-child(4n-3) :global(.image) {
+				transform: translate(-15vh, -15vh) scale(0.8);
+			}
+			:global(html.js) .item:nth-child(4n-1) :global(.image) {
+				transform: translate(15vh, 15vh) scale(0.8);
+			}
+			:global(html.js) .item:nth-child(4n-2) :global(.image) {
+				transform: translate(-15vh, 15vh) scale(0.8);
+			}
+			:global(html.js) .item :global(.image.-active) {
+				transform: translate(0, 0) scale(1);
+			}
 		}
 	}
-	/* reduced motion: a still collage, in place */
+	/* reduced motion: a still collage, in place (the attachment adds `reduced`; the media query
+	   covers the same state before it runs) */
+	@media (prefers-reduced-motion: reduce) {
+		.item :global(.image) {
+			opacity: 0.9;
+		}
+	}
 	.stage.reduced :global(.image) {
 		opacity: 0.9;
 		transform: none;

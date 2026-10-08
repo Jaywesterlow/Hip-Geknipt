@@ -1,22 +1,22 @@
 # Handoff — Salon Hip Geknipt demo
 
 Voor: de volgende Claude-sessie, in deze repo.
-Van: de cloudsessie van 8 oktober 2026 (dashboardsessie, session_01PgSCLt9XG4vzN2HPDuBvxQ).
+Van: de cloudsessie van 8 oktober 2026, 's avonds (session_01QSbKsXqvUNz1rhs3EvsVCu), na de dashboardsessie van dezelfde dag.
 Klant: Jaymar Westerlow, JW Creative.
 
 Lees `CLAUDE.md` eerst. Dit bestand zegt waar het werk staat en wat er nog niet is.
 
-## Waar het staat (8 oktober 2026, 22:40)
+## Waar het staat (9 oktober 2026, 00:20)
 
-| Ding   | Stand                                                                                                                                                                                                                                                                                                                                                                                                    |
-| ------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Code   | Eerste build geschreven, `npm run check` 0 fouten (4 waarschuwingen in `+layout.svelte`, `state_referenced_locally`, onschuldig: `data` is vast). `npm run lint`: prettier wil 5 bestanden herschrijven (`prettier --write .`), daarna eslint nog niet gezien. **`npm run build` is niet gedraaid.**                                                                                                     |
-| Gezien | **Niets.** Geen screenshot, geen browser, geen audit. De pagina is nog nooit gerenderd.                                                                                                                                                                                                                                                                                                                  |
-| Repo   | Alleen lokaal. GitHub-repo `hip-geknipt` aanmaken werd in de dashboardsessie geweigerd (permissie "Create Public Surface", via MCP én via `gh api`). **Jaymar maakt de repo zelf** (github.com/new, naam `hip-geknipt`, leeg, geen README), daarna `git remote add origin … && git push -u origin main`. Als noodoplossing staat de hele boom als branch `hip-geknipt` op `Jaywesterlow/JW` (zie onder). |
-| Vercel | Geen project. Na de repo: `create_git_project` (team `team_lLWEBAmgSB3Sra1PonSxPooO`), framework SvelteKit, URL verwacht `hip-geknipt.vercel.app` (staat zo in `src/lib/data/studio.ts`, `site.origin`; pas aan als de URL anders wordt).                                                                                                                                                                |
-| Mail   | Niet geschreven. Zie "De mail" onder.                                                                                                                                                                                                                                                                                                                                                                    |
-| Bellen | Maandag 13 oktober, nog niet in Google Calendar (kalender jaywesterlow71@gmail.com, alleen Google, nooit Apple).                                                                                                                                                                                                                                                                                         |
-| Bord   | `outreach/hip-geknipt.json` in jw-docs staat erop, stage `building` (die stage is op 8 okt aan het dashboard toegevoegd).                                                                                                                                                                                                                                                                                |
+| Ding   | Stand                                                                                                                                                                                                                                                                                                                                                 |
+| ------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Code   | `npm run check` 0 fouten (4 onschuldige waarschuwingen in `+layout.svelte`), `npm run lint` schoon, `npm run build` goed.                                                                                                                                                                                                                             |
+| Gezien | Gerenderd op 1440 en 400, vier passes met de audit-scripts van `site-design-rulebook`, elke band gelezen. Tien fouten gevonden en verholpen (hero-foto niet tot de rand, collage-plaatsing, hangend aanhalingsteken geknipt, footer naast de sleutellijn, een verloren spatie, een regelbreuk bij een prijs, de 11b-reset). Alles in `docs/audit.md`. |
+| Repo   | `github.com/Jaywesterlow/Hip-Geknipt`, branch `main` en `claude/clever-carson-ib0hvw` gelijk.                                                                                                                                                                                                                                                         |
+| Vercel | Zie "Vercel" onderaan dit bestand.                                                                                                                                                                                                                                                                                                                    |
+| Mail   | Geschreven: `docs/outreach/mail-to-hip-geknipt.md`, en als concept in de mailbox jay@jwcreative.nl (dashboard /inbox, drafts, uid 41). **Niet verstuurd**; Jaymar verstuurt 9 oktober.                                                                                                                                                                |
+| Bellen | Maandag 13 oktober 12:00 staat in Google Calendar (jaywesterlow71@gmail.com): "Bellen: Salon Hip Geknipt".                                                                                                                                                                                                                                            |
+| Bord   | `outreach/hip-geknipt.json` in jw-docs staat op `building`. Naar `sent` met `nextAt` 2026-10-13 zodra Jaymar gemaild heeft; deze sessie had jw-docs niet in scope.                                                                                                                                                                                    |
 
 ## Wat Jaymar besloot (process-interviewer, 8 oktober)
 
@@ -32,41 +32,45 @@ Lees `CLAUDE.md` eerst. Dit bestand zegt waar het werk staat en wat er nog niet 
 
 ## De connectie (voor de mail, in zijn woorden)
 
-- Hij kent de salon omdat hij er binnenliep: zijn moeder moest naar het toilet. Eerst mocht dat niet ("we mogen niet iedereen zomaar laten plassen"); de vriend van zijn moeder zei "O, echt? Maar ik heb hier een vloer gelegd", en toen mocht het.
-- Die vriend heeft dus **de vloer van de salon gelegd** en wordt **aankomende zaterdag (11 oktober 2026) zijn stiefvader** (ze trouwen). In de mail mag "mijn stiefvader" staan. Jaymar schreef ook "mijn zoon Tobias stiefvader"; onduidelijk of Tobias de naam van de stiefvader is. **Vraag het niet, schrijf "mijn stiefvader".**
-- De mail hoeft het toiletverhaal niet te vertellen; de connectie is de vloer, en dat hij ze van daar kent. Zelfde stad (Spijkenisse).
-- Jaymar merkte op dat de **cold-email-skill** eerst connectievragen hoort te stellen (één voor één, meerkeuze) en dat die in de dashboardsessie niet gesteld zijn. Hij gaf de connectie daarom zelf. De skill-kopie die hij bedoelt staat in de Fuku-repo (`docs/outreach/cold-email-SKILL.md` en `story-first.md`); de vaultversie is ouder. Elke draft eindigt met "waarom deze draft".
+- Hij kent de salon omdat hij er binnenliep: zijn moeder moest naar het toilet. Eerst mocht dat niet; de vriend van zijn moeder zei dat hij er de vloer had gelegd, en toen mocht het.
+- Die vriend heeft dus **de vloer van de salon gelegd** en wordt **zaterdag 11 oktober 2026 zijn stiefvader**. In de mail staat "mijn stiefvader". Niet vragen wie Tobias is.
+- De mail vertelt het toiletverhaal niet; de connectie is de vloer. Zelfde stad (Spijkenisse).
+- De cold-email-skill hoort eerst connectievragen te stellen; Jaymar gaf de connectie zelf. De skill-kopie die hij bedoelt staat in de Fuku-repo (`docs/outreach/cold-email-SKILL.md`, `story-first.md`); die repo was in deze sessie niet leesbaar (permissie geweigerd), de vaultversie en de MOOON-mail zijn gebruikt. Elke draft eindigt met "waarom deze draft".
 
 ## De mail
 
-- Van jay@jwcreative.nl, naar info@salonhipgeknipt.nl. **Nooit zelf versturen**: draft in `docs/outreach/mail-to-hip-geknipt.md`, hij verstuurt (9 oktober).
-- Onderwerp uit de connectie (de vloer), niet hun slogan.
-- Opbouw zoals de MOOON-mail (`Jaywesterlow/MOOON-Pilates`, `docs/outreach/mail-to-mooon.md`): verhaal eerst, dan de demo-link, kort.
-- Fouten op hun site die de mail mag noemen (`docs/prospect.md`): placeholder "555 555 555" en "Example@mail.com" in de header; prijslijst en reviews als plaatje; "Button"/"Knop" op de teamkaarten.
+- Van jay@jwcreative.nl, naar info@salonhipgeknipt.nl. **Nooit zelf versturen.**
+- Onderwerp "de vloer". Opbouw als de MOOON-mail: verhaal, de gap in één bijzin, de demo-link, gratis, het belletje. 68 woorden.
+- Eén fout van hun site genoemd (de prijslijst als foto); de rest (`docs/prospect.md`: "555 555 555" en "Example@mail.com" in de header, "Button"/"Knop" op de teamkaarten, de cookiebalk) is voor het gesprek.
 - Prijzen voor als ze ja zeggen: ladder lokaal, basis 500 plus 60 per uur, CMS 750, onderhoud 49 per maand (`docs/TODO.md` in de JW-repo, sectie Finance).
 
-## Wat de volgende sessie doet, in volgorde
+## Wat de volgende sessie doet
 
-1. `npm install` (node_modules zijn niet in git), `npx prettier --write .`, `npm run check`, `npm run lint`, `npm run build`.
-2. Renderen op 1440 en 400 (Playwright, Chromium staat in de omgeving) en **kijken**. Daarna de audit van `site-design-rulebook` (`scripts/render-audit.js`, `type-audit.js`) en `docs/audit.md` schrijven. Verwachte zwakke plekken: de collage (`Work.svelte`, posities in `workFacts`) is blind geplaatst; de hero-foto (3:4, 1086 px breed) naast de kopij; de prijslijst-rijen op een telefoon.
-3. Vercel: `create_git_project` op `Jaywesterlow/hip-geknipt`, dan de live URL in `site.origin`.
-4. De mail, met de connectie hierboven, in `docs/outreach/`.
-5. Kalender: "Bellen: Salon Hip Geknipt" maandag 13 oktober 12:00, Google Calendar.
-6. Bord: `outreach/hip-geknipt.json` in jw-docs naar `sent` zodra hij gemaild heeft, `nextAt` 2026-10-13.
-7. **Firecrawl**: de credits zijn op (0 van 1000) en **resetten op 1 november 2026 om 15:06** (Nederlandse tijd). Jaymar wil dan een tweede lezing van salonhipgeknipt.nl met Firecrawl (hij ziet Firecrawl als vast onderdeel van klantonderzoek), ook al is de site nu al met curl en Chromium gelezen. Niet eerder: een betaald plan kost ongeveer 16 dollar per maand en mag niet zonder zijn ja.
+1. Als de live URL anders is dan `https://hip-geknipt.vercel.app`: `site.origin` in `src/lib/data/studio.ts`, de mail (bestand en concept uid 41) en de agenda-afspraak aanpassen.
+2. Na Jaymars mail: het bord in jw-docs naar `sent`, `nextAt` 2026-10-13.
+3. Na het belletje: wat ze zeiden in `docs/prospect.md`, en hun openingstijden in de demo als ze die geven (`studio.ts`, `studio.nl.ts`, het JSON-LD in `schema.ts`).
+4. **Firecrawl**: credits zijn op (0 van 1000) en resetten op 1 november 2026 om 15:06 (Nederlandse tijd). Er staat een eenmalige Routine die op 1 november 15:10 een sessie start voor de tweede lezing van salonhipgeknipt.nl met Firecrawl. Niet eerder, geen betaald plan zonder zijn ja.
 
 ## Wat er al ligt
 
 - `docs/prospect.md`: alles wat van hun site is gelezen, de foto's en hun bron, de fouten op hun site.
-- `docs/recept.md`: het ontwerprecept (sector kapsalon, look "Dark atmospheric salon", elke afwijking benoemd, de genoemde kennisgaten in de vault).
+- `docs/recept.md`: het ontwerprecept (sector kapsalon, look "Dark atmospheric salon", elke afwijking benoemd, de kennisgaten in de vault). De offset-liniaal is x = 648.
 - `docs/bewegingsconcept.md`: bibliotheek 11b (tekst), 12 (foto's), 07 (de collage, het signatuurmoment).
+- `docs/audit.md`: de gemeten audit, de fouten en de fixes, wat met opzet blijft.
+- `docs/outreach/mail-to-hip-geknipt.md`: de mail en waarom.
 - `src/lib/data/studio.nl.ts`: hun woorden, de 24 prijsregels, 6 van hun 8 reviews.
 - `static/fonts`: Cormorant Garamond en Jost, zelf gehost.
 
 ## Valkuilen
 
+- `vite preview` leest zijn bestandslijst bij de start: na elke `npm run build` de preview herstarten, anders 404 op de nieuwe chunks (geen CSS, geen JS) en een audit op een dode build. `lsof -t -i :4173 | xargs kill`; `pkill -f "vite preview"` doodt ook je eigen shell.
+- `render-audit.js` springt vóór de screenshot terug naar boven, waardoor elk 11b-blok reset. De kopie in deze sessie bleef onderaan staan; de collage-items staan daar aan het bovenste eind van hun scrub en overlappen in de full-page render de lede (geen fout, zie `docs/audit.md`).
 - De vault-skill `bewegingsconcept` verwijst naar pagina's die niet bestaan (Animatie Per Sitetype, Animatiesystemen Voor Websites, Fotocriteria Voor Beeldsites). Beslis uit de bibliotheek en zeg wat je koos.
-- `looks.md`, `rulebook.md` en `composition.md` zijn te groot voor `read_skill_file`; `crucial-rules.md`, de SB-onderzoeksfile en de workflow zijn wel leesbaar.
-- Chromium in de cloudomgeving vertrouwt de proxy-CA niet; start het met `--ignore-certificate-errors-spki-list=<hashes van /root/.ccr/ca-bundle.crt>` (de dashboardsessie schreef die naar een scratchpad; opnieuw afleiden met openssl). Voor localhost is niets nodig.
+- `looks.md`, `rulebook.md` en `composition.md` zijn te groot voor `read_skill_file`; `crucial-rules.md`, de scripts, de workflow en de templates zijn wel leesbaar.
+- Chromium in de cloudomgeving: Playwright staat in `/opt/node-tools/node_modules` (`NODE_PATH`), de browser in `/opt/pw-browsers/chromium`. Voor localhost is niets nodig.
 - Hun openingstijden staan nergens op hun site en niet in de Aimy-widget: niet verzinnen, staan niet in de demo.
-- De logo-PNG had een zwarte achtergrond; `src/lib/assets/logo.png` is de transparante versie (drempel op helderheid). De oranje puntjes op de i's zijn niet als kleur gebruikt.
+- De logo-PNG had een zwarte achtergrond; `src/lib/assets/logo.png` is de transparante versie. De oranje puntjes op de i's zijn niet als kleur gebruikt.
+
+## Vercel
+
+Project aangemaakt op 8 oktober via `create_git_project` (team `team_lLWEBAmgSB3Sra1PonSxPooO`), gekoppeld aan `Jaywesterlow/Hip-Geknipt`, productie vanaf `main`. De URL staat in het sessieverslag en in `site.origin` als die anders werd dan `hip-geknipt.vercel.app`.
