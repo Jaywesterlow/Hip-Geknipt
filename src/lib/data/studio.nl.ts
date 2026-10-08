@@ -93,7 +93,7 @@ export const nl: Copy = {
 					from: true
 				}
 			],
-			note: 'Bij haarlengte over de schouder geldt een toeslag van € 20,-.'
+			note: 'Bij haarlengte over de schouder geldt een toeslag van €\u00a020,-.'
 		},
 		{
 			id: 'permanent',

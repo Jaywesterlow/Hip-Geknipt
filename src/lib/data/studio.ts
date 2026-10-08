@@ -188,5 +188,5 @@ export const content: Content = compose(nl);
 /** € 34,95 and € 450,-, as their price list writes them; the space never breaks. */
 export function euro(amount: number): string {
 	const text = Number.isInteger(amount) ? `${amount},-` : amount.toFixed(2).replace('.', ',');
-	return `€ ${text}`;
+	return `€\u00a0${text}`;
 }
