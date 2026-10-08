@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="nl">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+		<meta name="theme-color" content="#1b1511" />
+		<!-- reveal targets start hidden only when JS runs; see "Reveal pre-state" in src/app.css -->
+		<script>
+			document.documentElement.classList.add('js');
+		</script>
+		<link
+			rel="preload"
+			href="/fonts/cormorant-garamond-latin.woff2"
+			as="font"
+			type="font/woff2"
+			crossorigin
+		/>
+		<link rel="preload" href="/fonts/jost-latin.woff2" as="font" type="font/woff2" crossorigin />
+		%sveltekit.head%
+	</head>
+	<body data-sveltekit-preload-data="hover">
+		%sveltekit.body%
+	</body>
+</html>
