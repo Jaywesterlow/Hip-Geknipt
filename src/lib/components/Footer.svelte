@@ -1,6 +1,7 @@
 <script lang="ts">
 	import logo from '$lib/assets/logo.png';
 	import type { Studio, UI } from '$lib/data/studio';
+	import { goToHash } from '$lib/motion/scroll';
 	import { demo } from '$lib/state/demo.svelte';
 
 	/**
@@ -38,7 +39,7 @@
 					>
 				</li>
 			{/each}
-			<li><a class="link tap" href="#top">{text.top}</a></li>
+			<li><a class="link tap" href="#top" onclick={goToHash}>{text.top}</a></li>
 		</ul>
 	</div>
 	<p class="credit small">{text.credit}</p>

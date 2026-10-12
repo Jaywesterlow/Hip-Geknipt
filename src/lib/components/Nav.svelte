@@ -3,6 +3,7 @@
 	import logo from '$lib/assets/logo.png';
 	import type { NavLink, Studio, UI } from '$lib/data/studio';
 	import { demo } from '$lib/state/demo.svelte';
+	import { goToHash, holdScroll } from '$lib/motion/scroll';
 	import Button from './Button.svelte';
 
 	/**
@@ -14,17 +15,41 @@
 	let { studio, links, text }: Props = $props();
 
 	let menuOpen = $state(false);
-	const close = () => (menuOpen = false);
+
+	/**
+	 * Open and close set the page's scroll lock in the same call, not in an effect: a link in the
+	 * menu closes it and Lenis then scrolls to the anchor in the same click, which it only does
+	 * once it has been started again.
+	 */
+	const setMenu = (open: boolean) => {
+		menuOpen = open;
+		document.documentElement.classList.toggle('menu-open', open);
+		holdScroll(open);
+	};
+	const close = () => setMenu(false);
+	const onKeydown = (event: KeyboardEvent) => {
+		if (event.key === 'Escape' && menuOpen) close();
+	};
 </script>
 
+<svelte:window onkeydown={onKeydown} />
+
 <nav class="nav frame" aria-label="Hoofdmenu">
-	<a class="home" href="#top" onclick={close} aria-label={studio.name}>
+	<a
+		class="home"
+		href="#top"
+		onclick={(event) => {
+			close();
+			goToHash(event);
+		}}
+		aria-label={studio.name}
+	>
 		<img src={logo} alt="" width="414" height="159" />
 	</a>
 
 	<ul class="links">
 		{#each links as link (link.href)}
-			<li><a class="link tap" href={link.href}>{link.label}</a></li>
+			<li><a class="link tap" href={link.href} onclick={goToHash}>{link.label}</a></li>
 		{/each}
 	</ul>
 
@@ -37,7 +62,7 @@
 			class="menu-button link tap"
 			aria-expanded={menuOpen}
 			aria-controls="menu"
-			onclick={() => (menuOpen = !menuOpen)}
+			onclick={() => setMenu(!menuOpen)}
 		>
 			{menuOpen ? text.close : text.menu}
 		</button>
@@ -48,7 +73,16 @@
 	<div class="menu frame" id="menu" transition:fade={{ duration: 200 }}>
 		<ul class="rows">
 			{#each links as link (link.href)}
-				<li><a class="row" href={link.href} onclick={close}>{link.label}</a></li>
+				<li>
+					<a
+						class="row"
+						href={link.href}
+						onclick={(event) => {
+							close();
+							goToHash(event);
+						}}>{link.label}</a
+					>
+				</li>
 			{/each}
 			<li><a class="row" href={studio.phone.href} onclick={demo.open}>{text.phone}</a></li>
 		</ul>
@@ -113,15 +147,24 @@
 		font-size: var(--text-small);
 		cursor: pointer;
 	}
+	/* the sheet starts right under the bar's hairline: no top padding and no rule on the first
+	   row, or the gap reads as an empty first item */
 	.menu {
 		position: fixed;
 		top: var(--nav-h);
 		left: 0;
 		right: 0;
 		z-index: 19;
-		padding-block: var(--space-4) var(--space-6);
+		padding-block: 0 var(--space-6);
 		background: var(--panel);
 		border-bottom: 1px solid var(--line);
+	}
+	.menu .rows > :first-child {
+		border-top: 0;
+	}
+	/* the page behind the open sheet does not scroll, also without Lenis (reduced motion) */
+	:global(html.menu-open) {
+		overflow: hidden;
 	}
 	.row {
 		display: flex;
