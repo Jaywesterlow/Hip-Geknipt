@@ -45,8 +45,22 @@
 </section>
 
 <style>
+	/* the head keeps the collage's top row clear: the scrub (07) lifts an item up to speed × 6 % of
+	   the screen height above its place, so the space under the head is the largest lift of the top
+	   row minus how far that item already sits below the stage top (work1 speed 2 at 0, work2 speed 4
+	   at 6 % of 94vw, work3 speed 3 at 2 % of 94vw; on a phone work3 sits at 4 % of 320vw). Only the
+	   head moves; the collage is untouched. Measured over 93 screen sizes, 16 October 2026. */
+	/* this head carries the frame's padding itself (the stage below runs edge to edge), so its
+	   max-width adds that padding back: without it the 40rem included the margin and the text
+	   column shrank as the screen grew (400 px at 1440, 270 at 1570, one word per line at 1920) */
 	.work .head {
-		margin-bottom: var(--space-6);
+		max-width: calc(40rem + 2 * var(--margin));
+		margin-bottom: calc(var(--space-6) + max(12vh, 18vh - 1.88vw, 24vh - 5.64vw));
+	}
+	@media (max-width: 700px) {
+		.work .head {
+			margin-bottom: calc(var(--space-6) + max(12vh, 18vh - 12.8vw));
+		}
 	}
 	/* the stage runs edge to edge, so the images cross the frame on both sides; its height follows
 	   the width, like the images, so the placement holds on every screen height */
